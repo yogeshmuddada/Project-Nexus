@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="courseStructre.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+
+<body>
+    <h1>AI&ML Course Stracutre</h1>
+    <div class="faq-container">
+       
+        <div class="faq">
+            <h3 class="faq-title">
+                Module 1
+            </h3>
+
+            <p class="faq-text">
+                Day 1: Introduction to Data Science.<br>
+                Day 2: Python history, Installation, Explain about tools, Application of
+                python<br>
+                Day 3: Basics, Data types, keywords, operators.<br>
+                Day 4: I/O statements, conditional statements.<br>
+                Day 5: Loops, Programs.<br>
+
+            </p>
+
+            <button class="faq-toggle">
+                <i class="fas fa-chevron-down"></i>
+                <i class="fas fa-chevron-up"></i>
+            </button>
+        </div>
+
+        <div class="faq">
+            <h3 class="faq-title">
+                Module 2
+            </h3>
+
+            <p class="faq-text">
+                Day 1: List, arrays, strings.<br>
+                Day 2: Tuple, set, Dictionaries.<br>
+                Day 3: Functions.<br>
+                Day 4: Python library’s Numpy, Pandas.<br>
+                Day 5: Matplot lib, sklearn, seaborn.<br>
+            </p>
+
+            <button class="faq-toggle">
+                <i class="fas fa-chevron-down"></i>
+                <i class="fas fa-chevron-up"></i>
+            </button>
+        </div>
+
+        <div class="faq">
+            <h3 class="faq-title">
+                Module 3
+            </h3>
+
+            <p class="faq-text">
+                Day 1: Machine learning introduction, Machine learning types.<br>
+                Day 2: supervised learning, unsupervised, reinforcement.<br>
+                Day 3: Regression, Regression types.<br>
+                Day 4: Linear Regression, Linear Regression types.<br>
+                Day 5: SLR, MLR.<br>
+            </p>
+
+            <button class="faq-toggle">
+                <i class="fas fa-chevron-down"></i>
+                <i class="fas fa-chevron-up"></i>
+            </button>
+        </div>
+        <div class="faq">
+            <h3 class="faq-title">
+                Module 4
+            </h3>
+
+            <p class="faq-text">
+                Day 1: Linear Regression practical.<br>
+                Day 2: Logistic Regression, Classification Algorithms.<br>
+                Day 3: Logistic Regression, practical.<br>
+                Day 4: Decision tree, Random Forest.<br>
+                Day 5: Gradient descent, Adaboost.<br>
+            </p>
+
+            <button class="faq-toggle">
+                <i class="fas fa-chevron-down"></i>
+                <i class="fas fa-chevron-up"></i>
+            </button>
+        </div>
+    </div>
+    <script>
+        const toggles = document.querySelectorAll('.faq-toggle')
+
+        toggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                toggle.parentNode.classList.toggle('active')
+            })
+        })
+    </script>
+
+</body>
+
+</html>
