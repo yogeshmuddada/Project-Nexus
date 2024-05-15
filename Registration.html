@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!---Coding By CodingLab | www.codinglabweb.com--->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!--<title>Registration Form in HTML CSS</title>-->
+    <!---Custom CSS File--->
+    <link rel="stylesheet" href="Registration.css" />
+  </head>
+  <body>
+    <section class="container">
+      <header>Registration Form</header>
+      <form action="#" class="form" name="submit-to-google-sheet">
+        <div class="input-box">
+          <label>Full Name</label>
+          <input type="text" name="Name" placeholder="Enter full name" required />
+        </div>
+
+        <div class="input-box">
+          <label>Email Address</label>
+          <input type="text" name="Email" placeholder="Enter email address" required />
+        </div>
+
+        <div class="column">
+          <div class="input-box">
+            <label>Phone Number</label>
+            <input type="tel" name="PhoneNo" placeholder="Enter phone number" required />
+          </div>
+        </div>
+        <div class="gender-box">
+          <h3>Gender</h3>
+          <div class="gender-option">
+            <div class="gender">
+              <input type="radio" id="check-male" name="gender" checked/>
+              <label for="check-male" value="Male">male</label>
+            </div>
+            <div class="gender">
+              <input type="radio" id="check-female" name="gender" />
+              <label for="check-female" value="Female">Female</label>
+            </div>
+            <div class="gender">
+              <input type="radio" id="check-other" name="gender" />
+              <label for="check-other" value="No" >prefer not to say</label>
+            </div>
+          </div>
+        </div>
+        <div class="input-box address">
+          <label>Address</label>
+          <input type="text" name="Address" placeholder="Enter your address" required />
+          <div class="column">
+            <div class="select-box">
+              <select id="select-service" name="Service">
+                <option hidden>Select Service</option>
+                <option>Main Projects</option>
+                <option>Mini Projects</option>
+                <option>Skill Growth Courses</option>
+              </select>
+            </div>
+            <div class="select-box" id="select-courses" style="display: none;">
+              <select name="Course">
+                <option hidden>Select Courses</option>
+                <option>AI&ML</option>
+                <option>JAVA</option>
+                <option>HTML,CSS</option>
+                <option>PYTHON</option>
+              </select>
+            </div>
+          </div>
+          
+        </div>
+        <span id="msg"></span>
+        <button>Submit</button>
+        <div class="loader" id="loader" style="display: none;"></div>
+      </form>
+    </section>
+
+    <script>
+      document.getElementById('select-service').addEventListener('change', function() {
+        var selectedOption = this.value;
+        var selectCourses = document.getElementById('select-courses');
+        
+        if (selectedOption === 'Skill Growth Courses') {
+          selectCourses.style.display = 'block';
+        } else {
+          selectCourses.style.display = 'none';
+        }
+      });
+    
+      const form = document.forms['submit-to-google-sheet'];
+      const msg = document.getElementById("msg");
+      const loader = document.getElementById("loader");
+    
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        loader.style.display = "block";
+        const phoneNumber = form.elements['PhoneNo'].value;
+        if (phoneNumber.length !== 10) {
+          msg.innerHTML = "Phone number should be exactly 10 digits long.";
+          loader.style.display = "none";
+          return;
+        }
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzAfiWzyOV3NNDLrEswFGuB2GhLBkm9Ef2_aONxDkfpB423x3HBQiLtEXngJ4l3oiBmdQ/exec';
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+          .then(response => {
+            if (response.ok) {
+              msg.innerHTML = "Registration successful completed";
+              setTimeout(function(){
+                msg.innerHTML = "";
+                form.reset();
+              }, 5000);
+            } else {
+              throw new Error('Network response was not ok');
+            }
+          })
+          .catch(error => {
+            console.error('Error!', error.message);
+            msg.innerHTML = "An error occurred while submitting the form.";
+          })
+          .finally(() => {
+            loader.style.display = "none";
+          });
+      });
+    </script>
+    
+  </body>
+</html>
